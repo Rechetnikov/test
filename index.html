@@ -6,14 +6,25 @@
 </head>
 <body>
     <div id="app">
-        <h2 v-html="link"></h2>
+        <h2>Счетчик = {{counter}}</h2><hr />
+        <button v-on:click="counter++">Увеличить (конкат.)</button><hr />
+        <button v-on:click="riseCounter">Увеличить (метод)</button><hr />
+        <h2 v-on:mouseover="onHover">Замена цвета при наведении</h2>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                link: '<a href="http://google.com">Google</a>'
+                counter: 0
+            },
+            methods: {
+                riseCounter: function(){
+                    this.counter++
+                },
+                onHover: function (event) {
+                    event.target.style.color = 'red'
+                }
             }
         });
     </script>
