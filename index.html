@@ -6,27 +6,24 @@
 </head>
 <body>
     <div id="app">
-        <h2><a href="http://google.com" target="_blank">Google (Переход не закрыт)</a></h2><hr />
-        <h2><a href="http://google.com" target="_blank" v-on:click="clickOnGoogle">Google (Переход закрыт методом)</a></h2><hr />
-        <h2><a href="http://google.com" target="_blank" v-on:click.prevent="">Google (Переход закрыт модификатором)</a></h2><hr />
-        <h2 v-on:mousemove = "handleMouseMove">Координаты: X - {{ x }}, Y - {{ y }}. <span v-on:mousemove.stop>Не изменять</span></h2>
+        На JS: <input type="text" v-on:keyup="alertValue" /> <hr />
+        На модификаторе Enter <input type="text" v-on:keyup.enter.space="alertModif" />
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                x: 0,
-                y: 0
+
             },
             methods: {
-                clickOnGoogle: function (event) {
-                    event.preventDefault();
-                    console.log('preventDefault');
+                alertValue: function (event) {
+                    if(event.keyCode == '13'){
+                        console.log(event.target.value);
+                    }
                 },
-                handleMouseMove: function (event) {
-                    this.x = event.clientX;
-                    this.y = event.clientY;
+                alertModif: function (event){
+                    console.log(event.target.value);
                 }
             }
         });
