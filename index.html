@@ -6,19 +6,17 @@
 </head>
 <body>
     <div id="app">
-        <h2><a :href="url">Google</a></h2><hr />  <!-- v-bind -->
-
-        <h2>Counter: {{counter}}</h2> <hr />
-
-        <button @click="counter++">Rise</button> <!-- v-on: -->
+        Примитивное решение: <input type="text" @input="inputValue = $event.target.value" :value="inputValue" /><hr />
+        Продвинутое решение: <input type="text" v-model="inputValue" /><hr />
+        При смене фокуса (lazy): <input type="text" v-model.lazy="inputValue" /><hr />
+        <h2>Результат: {{inputValue}}</h2>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                url: 'http://google.com',
-                counter: 0
+                inputValue: 'init show value'
             }
         });
     </script>
