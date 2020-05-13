@@ -6,25 +6,19 @@
 </head>
 <body>
     <div id="app">
-        На JS: <input type="text" v-on:keyup="alertValue" /> <hr />
-        На модификаторе Enter <input type="text" v-on:keyup.enter.space="alertModif" />
+        <h2><a :href="url">Google</a></h2><hr />  <!-- v-bind -->
+
+        <h2>Counter: {{counter}}</h2> <hr />
+
+        <button @click="counter++">Rise</button> <!-- v-on: -->
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-
-            },
-            methods: {
-                alertValue: function (event) {
-                    if(event.keyCode == '13'){
-                        console.log(event.target.value);
-                    }
-                },
-                alertModif: function (event){
-                    console.log(event.target.value);
-                }
+                url: 'http://google.com',
+                counter: 0
             }
         });
     </script>
