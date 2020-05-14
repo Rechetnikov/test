@@ -19,37 +19,27 @@
 </head>
 <body>
     <div id="app">
-        <h2>Объект: <div class="circle" @click="isActive = !isActive" :class="{'red': isActive, 'green': !isActive}"></div></h2>
-        <h2>Метод: <div class="circle" @click="isActive = !isActive" :class="getCssClassec()"></div></h2>
-        <h2>Метод computed: <div class="circle" @click="isActive = !isActive" :class="getCssClassecComputed"></div></h2>
-        <hr />
-        <h2>Компонент: <div class="circle" :class="color"></div></h2>
-        <h2>Компонент как массив + объект: <div class="circle" :class="[color, {'red': isActive}]"></div></h2>
-        <h2>Компонент как массив + метод computed: <div class="circle" :class="[color, getCssClassecComputed]"></div></h2>
+        <h2>Объект меняет цвет: <div class="circle" :style="{'background': color}"></div></h2>
+        <h2>Объект меняет цвет и высоту: <div class="circle" :style="{'background': color, 'height': height+'px'}"></div></h2>
+        <h2>Метод меняет цвет и высоту: <div class="circle" :style="circleClasses"></div></h2>
+        <h2>Метод + объект меняет цвет и ширину: <div class="circle" :style="[circleClasses, {'width': height+'px'}]"></div></h2>
         <hr />
         <input type="text" v-model="color" />
+        <input type="text" v-model="height" />
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                isActive: false,
-                color: 'blue'
+                color: 'blue',
+                height: '100'
             },
-            computed:{
-                getCssClassecComputed: function() {
+            computed: {
+                circleClasses: function () {
                     return {
-                        'red': this.isActive,
-                        'blue': !this.isActive
-                    }
-                }
-            },
-            methods:{
-                getCssClassec: function() {
-                    return {
-                        'red': this.isActive,
-                        'green': !this.isActive
+                        'background': this.color,
+                        'height': this.height + 'px'
                     }
                 }
             }
