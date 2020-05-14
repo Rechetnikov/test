@@ -3,45 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Vue Units</title>
-    <style>
-        .circle{
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 1px solid black;
-            display: inline-block;
-        }
-
-        .red {background: red}
-        .blue {background: blue}
-        .green {background: green}
-    </style>
 </head>
 <body>
     <div id="app">
-        <h2>Объект меняет цвет: <div class="circle" :style="{'background': color}"></div></h2>
-        <h2>Объект меняет цвет и высоту: <div class="circle" :style="{'background': color, 'height': height+'px'}"></div></h2>
-        <h2>Метод меняет цвет и высоту: <div class="circle" :style="circleClasses"></div></h2>
-        <h2>Метод + объект меняет цвет и ширину: <div class="circle" :style="[circleClasses, {'width': height+'px'}]"></div></h2>
+        <h2 v-if="isVisible">I am visible (v-if)</h2>
+        <h2 v-else>No I am visible (v-else)</h2>
+        <button @click="isVisible = !isVisible">Toggle</button>
         <hr />
-        <input type="text" v-model="color" />
-        <input type="text" v-model="height" />
+
+        <h2 v-if="type === 'a'">A</h2>
+        <h2 v-else-if="type === 'b'">B</h2>
+        <h2 v-else-if="type === 'c'">C</h2>
+        <h2 v-else>Not match</h2>
+        <input type="text" v-model="type">
+
+        <hr />
+
+        <tmplate v-if="isLorem">
+            <h2>I am title</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, ullam.</p>
+        </tmplate>
+
+        <tmplate v-else>
+            <h2 style="color: red">I am title</h2>
+            <p style="color: blue">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, ullam.</p>
+        </tmplate>
+
+        <button @click="isLorem = !isLorem">Toggle</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                color: 'blue',
-                height: '100'
-            },
-            computed: {
-                circleClasses: function () {
-                    return {
-                        'background': this.color,
-                        'height': this.height + 'px'
-                    }
-                }
+                isVisible: true,
+                type: 'a',
+                isLorem: false
             }
         });
     </script>
