@@ -6,30 +6,12 @@
 </head>
 <body>
     <div id="app">
-        <h2 v-if="isVisible">I am visible (v-if)</h2>
-        <h2 v-else>No I am visible (v-else)</h2>
+        <h1 v-show="isVisible">I am visible (v-if)</h1>
+        <h2 v-show="!isVisible">No I am visible (v-else)</h2>
+
+        <hr />
+
         <button @click="isVisible = !isVisible">Toggle</button>
-        <hr />
-
-        <h2 v-if="type === 'a'">A</h2>
-        <h2 v-else-if="type === 'b'">B</h2>
-        <h2 v-else-if="type === 'c'">C</h2>
-        <h2 v-else>Not match</h2>
-        <input type="text" v-model="type">
-
-        <hr />
-
-        <tmplate v-if="isLorem">
-            <h2>I am title</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, ullam.</p>
-        </tmplate>
-
-        <tmplate v-else>
-            <h2 style="color: red">I am title</h2>
-            <p style="color: blue">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, ullam.</p>
-        </tmplate>
-
-        <button @click="isLorem = !isLorem">Toggle</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script>
@@ -37,8 +19,6 @@
             el: '#app',
             data: {
                 isVisible: true,
-                type: 'a',
-                isLorem: false
             }
         });
     </script>
