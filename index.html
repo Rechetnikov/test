@@ -6,9 +6,8 @@
 </head>
 <body>
     <div id="app"><hr/>
-        <h2>Counter: {{counter}} / Counter2: {{counter2}}</h2>
-        <h3>Condition через метод result(): {{result()}} <em>вызывается всегда (и когде не надо тоже)</em></h3>
-        <h3>Condition через метод computedResult: {{computedResult}} <em>вызывается только когда переменные учвствуют</em></h3>
+        <h2>Counter_1: {{counter}} / Counter_2: {{counter2}}</h2>
+        <h3>Condition через метод computedResult: {{computedResult}}</h3>
 
         <button @click="add">Add</button>
         <button @click="sub">Sub</button>
@@ -18,20 +17,16 @@
     <script>
         new Vue({
             el: '#app',
-            data: {
+            data:{
                 counter: 0,
                 counter2: 0,
             },
-            methods: {
+            methods:{
                 add: function () {
                     this.counter++;
                 },
                 sub: function () {
                     this.counter--;
-                },
-                result: function () {
-                    console.log("Вызван метод Result");
-                    return this.counter>3 ? "Counter больше 3" : "Counter меньше 3";
                 },
             },
             computed:{
@@ -39,6 +34,11 @@
                     console.log("Вызван метод computedResult");
                     return this.counter>3 ? "Counter больше 3" : "Counter меньше 3";
                 },
+            },
+            watch:{
+                counter: function (val) {
+                   console.log('Counter изменилвсь на' + val);
+                }
             }
         });
     </script>
