@@ -6,71 +6,39 @@
 </head>
 <body>
     <div id="app"><hr/>
-        <h3>Массив примитивно: </h3>
-            <ul>
-                <li>{{people[0]}}</li>
-                <li>{{people[1]}}</li>
-                <li>{{people[2]}}</li>
-            </ul>
-        <hr/>
-            <h3>Массив через v-for: </h3>
-            <ul>
-                <li v-for="person in people">{{person}}</li>
-            </ul>
-        <hr/>
-            <h3>Массив через v-for (person, index): </h3>
-            <ul>
-                <li v-for="(person, index) in people">{{index+1}}. {{person}}</li>
-            </ul>
-        <hr/>
-            <h3>Объекты v-for (person, index): </h3>
-            <ul>
-                <li v-for="(operator, index) of operators">{{index+1}}. name: {{operator.name}}, <strong>age: {{operator.age}}</strong></li>
-            </ul>
-        <hr/>
-            <h3>Числа v-for (num of 4): </h3>
-            <ol>
-                <li v-for="num of 4">{{num}}</li>
-            </ol>
-        <hr/>
-            <h3>Объект v-for (value): </h3>
-            <ol>
-                <li v-for="value in chel">{{value}}</li>
-            </ol>
-        <hr/>
-            <h3>Объект v-for (value, key): </h3>
-            <ol>
-                <li v-for="(value, key) in chel"><strong>{{key}}</strong> {{value}}</li>
-            </ol>
-        <hr/>
-            <h3>Объект v-for (value, key, index): </h3>
-            <ol>
-                <li v-for="(value, key, index) in chel"><em>{{index+1}}</em> <strong>{{key}}</strong> {{value}}</li>
-            </ol>
-        <hr/>
+        <h2>Counter: {{counter}} / Counter2: {{counter2}}</h2>
+        <h3>Condition через метод result(): {{result()}} <em>вызывается всегда (и когде не надо тоже)</em></h3>
+        <h3>Condition через метод computedResult: {{computedResult}} <em>вызывается только когда переменные учвствуют</em></h3>
+
+        <button @click="add">Add</button>
+        <button @click="sub">Sub</button>
+        <button @click="counter2++">Add counter2</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script>
         new Vue({
             el: '#app',
             data: {
-                people: [
-                    'erat',
-                    'eo',
-                    'comitia',
-                    'deducta',
-                ],
-                operators: [
-                    {name: 'possit', age: 20},
-                    {name: 'romani', age: 25},
-                    {name: 'eis', age: 23},
-                    {name: 'qui', age: 28},
-                ],
-                chel:{
-                    name: 'Test',
-                    age: '30',
-                    job: 'Backend'
-                }
+                counter: 0,
+                counter2: 0,
+            },
+            methods: {
+                add: function () {
+                    this.counter++;
+                },
+                sub: function () {
+                    this.counter--;
+                },
+                result: function () {
+                    console.log("Вызван метод Result");
+                    return this.counter>3 ? "Counter больше 3" : "Counter меньше 3";
+                },
+            },
+            computed:{
+                computedResult: function () {
+                    console.log("Вызван метод computedResult");
+                    return this.counter>3 ? "Counter больше 3" : "Counter меньше 3";
+                },
             }
         });
     </script>
