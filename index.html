@@ -5,40 +5,45 @@
     <title>Vue Units</title>
 </head>
 <body>
-    <div id="app"><hr/>
-        <h2>Counter_1: {{counter}} / Counter_2: {{counter2}}</h2>
-        <h3>Condition через метод computedResult: {{computedResult}}</h3>
-
-        <button @click="add">Add</button>
-        <button @click="sub">Sub</button>
-        <button @click="counter2++">Add counter2</button>
+    <div id="app_1">
+        <h2>{{ title }}</h2>
+        <h3>{{ newField }}</h3>
+        <button @click="title = 'Заголовок изменен'">Обновление заголовка</button>
+    </div>
+    <hr />
+    <div id="app_2">
+        <h2>{{title}}</h2>
+        <button @click="updateFirstTitle">Обновление заголовка в vue_1</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script>
-        new Vue({
-            el: '#app',
+        var vue_1 = new Vue({
+            el: '#app_1',
             data:{
-                counter: 0,
-                counter2: 0,
+                title: 'Заголовок по умолчанию',
+                newField: ''
+            },
+            methods: {
+                alertConsoleLog: function () {
+                    console.log('run alertConsoleLog')
+                }
+            }
+        });
+
+        vue_1.newField = 'Новое поле';
+
+        new Vue({
+            el: '#app_2',
+            data:{
+                title: 'Привет из vue 2'
             },
             methods:{
-                add: function () {
-                    this.counter++;
-                },
-                sub: function () {
-                    this.counter--;
-                },
-            },
-            computed:{
-                computedResult: function () {
-                    console.log("Вызван метод computedResult");
-                    return this.counter>3 ? "Counter больше 3" : "Counter меньше 3";
-                },
-            },
-            watch:{
-                counter: function (val) {
-                   console.log('Counter изменилвсь на' + val);
-                }
+                updateFirstTitle: function () {
+                    console.log('updateFirstTitle');
+                    vue_1.title = "Обновление из второго Vue";
+                    vue_1.newField = 'Новое значение поля vue_1.newField из vue_2';
+                    vue_1.alertConsoleLog();
+        }
             }
         });
     </script>
