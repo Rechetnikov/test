@@ -5,25 +5,27 @@
     <title>Vue Units</title>
 </head>
 <body>
-    <div id="app">
-        <h2 ref="heading">{{ title }}</h2>
-        <button @click="updateFirstTitle()">Обновление заголовка</button>
-        <hr ref="horLine" />
+    <div id="app_mount">
+        <h2>{{ title }}</h2>
     </div>
+
+    <div id="app_template"></div>
+
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script>
-        new Vue({
-            el: '#app',
+        var vue_mount = new Vue({
             data:{
-                title: 'Заголовок по умолчанию',
-            },
-            methods: {
-                updateFirstTitle() {
-                    this.title = 'Заголовок изменен';
-                    this.$refs.heading.style.color = 'red';
-                    console.log(this.$refs);
-                }
+                title: 'Заголовок "mount" по умолчанию',
             }
+        });
+        vue_mount.$mount('#app_mount');
+
+        var vue_template = new Vue({
+            el: '#app_template',
+            data:{
+                title: 'Заголовок "template" по умолчанию'
+            },
+            template: '<h2>{{title}}</h2>'
         });
     </script>
 </body>
