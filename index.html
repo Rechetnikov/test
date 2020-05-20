@@ -6,49 +6,32 @@
 </head>
 <body>
     <div id="app">
-        <h2>{{ title }}</h2>
-        <button @click="title = 'Заголовок изменен'">Обновление заголовка</button>
-        <button @click="doDestroy">Destroy</button>
+        <my-counter></my-counter>
+        <my-counter></my-counter>
+        <my-counter></my-counter>
+
     </div>
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script>
-        var vue_mount = new Vue({
-            el: '#app',
-            data:{
-                title: 'Заголовок по умолчанию',
+        Vue.component('my-counter', {
+            template: `
+                <div style="border: 1px solid #000; padding: 0px 10px 10px 10px; margin-bottom: 10px">
+                    <h2>Counter: {{counter}}</h2>
+                    <hr />
+                    <button @click="add">Add</button>
+                </div>`,
+            data: function(){
+                return {counter: 0}
             },
-            methods: {
-                doDestroy: function() {
-                    this.$destroy()
+            methods:{
+                add: function(){
+                    this.counter++
                 }
-            },
-            beforeCreate: function() {
-                console.log('Before Create | Начало создания');
-            },
-            created: function() {
-                console.log('Created | Vue создан но нет html');
-            },
-            beforeMount: function() {
-                console.log('Before Mount | Начало создания html');
-            },
-            mounted: function() {
-                console.log('Mounted | Html создан');
-            },
-            beforeUpdate: function() {
-                console.log('Before Update | Начало обновления');
-            },
-            updated: function() {
-                console.log('Updated | Обновлено')
-            },
-            beforeDestroy: function() {
-                console.log('Before Destroy | Начало удаления')
-            },
-            destroyed: function() {
-                console.log('Destroyed | Удалено')
             }
+        });
+        new Vue({
+            el: '#app',
         });
     </script>
 </body>
