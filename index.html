@@ -6,32 +6,43 @@
 </head>
 <body>
     <div id="app">
+        <my-counter v-for = "c in 2"></my-counter>
+    </div>
+    <hr />
+    <div id="app2">
         <my-counter></my-counter>
-        <my-counter></my-counter>
-        <my-counter></my-counter>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script>
-        Vue.component('my-counter', {
+
+        var component = {
             template: `
                 <div style="border: 1px solid #000; padding: 0px 10px 10px 10px; margin-bottom: 10px">
                     <h2>Counter: {{counter}}</h2>
-                    <hr />
                     <button @click="add">Add</button>
                 </div>`,
             data: function(){
-                return {counter: 0}
+                return {
+                    counter: 0
+                }
             },
             methods:{
                 add: function(){
                     this.counter++
                 }
             }
-        });
+        };
+
         new Vue({
             el: '#app',
+            components:{
+                'my-counter': component
+            }
+        });
+
+        new Vue({
+            el: '#app2',
         });
     </script>
 </body>
