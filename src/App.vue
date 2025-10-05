@@ -1,31 +1,28 @@
 <template>
-    <h3>{{ info }}</h3>
-    <p>{{ some_info }}</p>
-    <button
-        type="button"
-        @click="userData('Очищено!')">
-        Отправить
-    </button>
+    <input type="text" @input="insertData($event.target.value)" placeholder="Логин"><br />
+    <input type="password" placeholder="Пароль" /><br />
+    <input type="emil" placeholder="E-mail" />
+
+    <p>{{user_name}}</p>
 </template>
 
 <script>
     export default {
         data() {
             return {
-                info: 'Title!',
-                some_info: 'Текст'
+                user_name: '',
+                user_pass: '',
+                user_emil: ''
             }
         },
         methods: {
-            userData(world = 'Default') {
-                this.some_info = world;
+            insertData(value) {
+                this.user_name = value
             }
         }
     };
 </script>
 
 <style scoped>
-    p {
-        color: gray;
-    }
+
 </style>
